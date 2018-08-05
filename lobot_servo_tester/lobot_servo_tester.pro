@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui widgets
+QT       += core gui widgets serialport
 
 TARGET = lobot_servo_tester
 TEMPLATE = app
