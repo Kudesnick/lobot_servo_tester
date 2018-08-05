@@ -159,12 +159,15 @@
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>81</width>
+       <width>91</width>
        <height>21</height>
       </rect>
      </property>
      <property name="text">
       <string>Servo ID:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="QPushButton" name="btn_SERVO_ID_WRITE">

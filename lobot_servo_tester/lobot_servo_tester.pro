@@ -24,10 +24,12 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    serialport.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    serialport.h
 
 FORMS += \
         mainwindow.ui
