@@ -25,14 +25,17 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    serialport.cpp
+    serialport.cpp \
+    servo_cmd.cpp
 
 HEADERS += \
         mainwindow.h \
-    serialport.h
+    serialport.h \
+    servo_cmd.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    servo_cmd.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
