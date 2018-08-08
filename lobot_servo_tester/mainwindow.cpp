@@ -1,17 +1,25 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "servo_cmd.h"
 
 #include "serialport.h"
 
 #include <QThread>
 
 static serialPort * serial;
+static servo_cmd * commands[2];
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    for (uint8_t i = 0; i < sizeof(commands)/sizeof(commands[0]); i++)
+    {
+        commands[i] = new servo_cmd();
+        ui->lay_cmd_list_layout->addWidget(commands[i]);
+    }
 
     serial = new serialPort(this);
     ui->uart_list->setModel(serial);

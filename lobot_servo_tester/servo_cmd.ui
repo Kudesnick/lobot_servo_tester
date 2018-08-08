@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>180</width>
-    <height>190</height>
+    <height>182</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -15,6 +15,12 @@
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>2048</width>
+    <height>2048</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -25,6 +31,9 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>0</number>
+   </property>
+   <property name="sizeConstraint">
+    <enum>QLayout::SetMinimumSize</enum>
    </property>
    <property name="leftMargin">
     <number>0</number>
@@ -59,6 +68,9 @@
       <set>Qt::AlignJustify|Qt::AlignTop</set>
      </property>
      <layout class="QVBoxLayout" name="lay_group" stretch="0,0,0,0">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMinimumSize</enum>
+      </property>
       <property name="leftMargin">
        <number>6</number>
       </property>
@@ -72,189 +84,245 @@
        <number>6</number>
       </property>
       <item>
-       <layout class="QHBoxLayout" name="lay_radio" stretch="0,0">
-        <item>
-         <widget class="QRadioButton" name="rb_default">
-          <property name="text">
-           <string>servo</string>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-          <property name="checked">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="rb_alternate">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>rotate</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <widget class="QWidget" name="lay_radio" native="true">
+        <layout class="QHBoxLayout" name="lay_radio_layout" stretch="0,0">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="sizeConstraint">
+          <enum>QLayout::SetMinimumSize</enum>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QRadioButton" name="rb_default">
+           <property name="text">
+            <string>servo</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="rb_alternate">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>rotate</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="lay_flags">
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <item>
-         <widget class="QCheckBox" name="ch_1">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>CheckBox</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="ch_2">
-          <property name="text">
-           <string>CheckBox</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="ch_3">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>CheckBox</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <widget class="QWidget" name="lay_flags" native="true">
+        <layout class="QVBoxLayout" name="lay_flags_layout">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QCheckBox" name="ch_1">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>CheckBox</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="ch_2">
+           <property name="text">
+            <string>CheckBox</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="ch_3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>CheckBox</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </item>
       <item>
-       <layout class="QFormLayout" name="lay_params">
-        <property name="sizeConstraint">
-         <enum>QLayout::SetDefaultConstraint</enum>
-        </property>
-        <property name="labelAlignment">
-         <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
-        </property>
-        <property name="formAlignment">
-         <set>Qt::AlignHCenter|Qt::AlignTop</set>
-        </property>
-        <item row="0" column="1">
-         <widget class="QSpinBox" name="sp_param_1"/>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="lb_param_1">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="lb_param_2">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QSpinBox" name="sp_param_2"/>
-        </item>
-       </layout>
+       <widget class="QWidget" name="lay_params" native="true">
+        <layout class="QFormLayout" name="lay_params_layout">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetDefaultConstraint</enum>
+         </property>
+         <property name="labelAlignment">
+          <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+         </property>
+         <property name="formAlignment">
+          <set>Qt::AlignHCenter|Qt::AlignTop</set>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="sp_param_1"/>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="lb_param_1">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="lb_param_2">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QSpinBox" name="sp_param_2"/>
+         </item>
+        </layout>
+       </widget>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="lay_btn">
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <item>
-         <widget class="QSpinBox" name="sp_param">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>46</width>
-            <height>21</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>21</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="btn_set">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>46</width>
-            <height>23</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>46</width>
-            <height>22</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>set</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="btn_get">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>46</width>
-            <height>23</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>46</width>
-            <height>23</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>get</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <widget class="QWidget" name="lay_btn" native="true">
+        <layout class="QHBoxLayout" name="lay_btn_layout">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QSpinBox" name="sp_param">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>21</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>21</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btn_set">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>23</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>46</width>
+             <height>22</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>set</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btn_get">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>23</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>46</width>
+             <height>23</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>get</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </item>
      </layout>
     </widget>
