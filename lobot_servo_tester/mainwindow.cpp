@@ -1,13 +1,45 @@
+#include <QThread>
+#include <QJsonDocument>
+#include <QDebug>
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "servo_cmd.h"
 
 #include "serialport.h"
 
-#include <QThread>
-
 static serialPort * serial;
 static servo_cmd * commands[2];
+
+#define countof(e) (sizeof(e)/sizeof((e)[0]))
+
+static const char* source_str = R"(
+{
+    "SERVO_ID":
+    {
+        "name": "SERVO_ID",
+
+        "params":
+        [
+            {
+                "name": "ID",
+                "type": "int",
+                "range": [0, 253]
+            }
+        ],
+
+        "write":
+        {
+            "code": "0x13"
+        },
+
+        "read":
+        {
+            "code": "0x14"
+        }
+    }
+}
+)";
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -15,9 +47,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    for (uint8_t i = 0; i < sizeof(commands)/sizeof(commands[0]); i++)
+    QJsonObject cmd_json = QJsonDocument::fromJson(QByteArray(source_str)).object();
+
+    for (uint8_t i = 0; i < cmd_json.count(); i++)
     {
-        commands[i] = new servo_cmd();
+        commands[i] = new servo_cmd(nullptr, cmd_json.value(cmd_json.keys()[i]).toObject());
         ui->lay_cmd_list_layout->addWidget(commands[i]);
     }
 
