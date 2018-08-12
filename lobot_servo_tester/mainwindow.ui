@@ -99,21 +99,10 @@
      </widget>
     </item>
     <item>
-     <widget class="QWidget" name="lay_cmd_list" native="true">
-      <layout class="QVBoxLayout" name="lay_cmd_list_layout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-      </layout>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>-1</number>
+      </property>
      </widget>
     </item>
     <item>
@@ -203,7 +192,7 @@
      <x>0</x>
      <y>0</y>
      <width>311</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

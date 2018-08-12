@@ -19,6 +19,7 @@ R"({"cmd_arr":[
 
 {
     "name": "SERVO_MOVE_TIME",
+    "type": "move",
     "params":
     [
         {
@@ -37,6 +38,7 @@ R"({"cmd_arr":[
 },
 {
     "name": "SERVO_MOVE_TIME_WAIT",
+    "type": "move ext",
     "params":
     [
         {
@@ -55,16 +57,19 @@ R"({"cmd_arr":[
 },
 {
     "name": "SERVO_MOVE_START",
+    "type": "move ext",
     "params": [],
     "write": 11
 },
 {
     "name": "SERVO_MOVE_STOP",
+    "type": "move ext",
     "params": [],
     "write": 12
 },
 {
     "name": "SERVO_ID",
+    "type": "adj",
     "params":
     [
         {
@@ -78,6 +83,7 @@ R"({"cmd_arr":[
 },
 {
     "name": "SERVO_ANGLE_OFFSET_ADJUST",
+    "type": "adj",
     "params":
     [
         {
@@ -91,11 +97,13 @@ R"({"cmd_arr":[
 },
 {
     "name": "SERVO_ANGLE_OFFSET_WRITE",
+    "type": "adj",
     "params": [],
     "write": 18
 },
 {
     "name": "SERVO_ANGLE_LIMIT",
+    "type": "lim",
     "params":
     [
         {
@@ -114,6 +122,7 @@ R"({"cmd_arr":[
 },
 {
     "name": "SERVO_VIN_LIMIT",
+    "type": "lim",
     "params":
     [
         {
@@ -132,6 +141,7 @@ R"({"cmd_arr":[
 },
 {
     "name": "SERVO_TEMP_MAX_LIMIT",
+    "type": "lim",
     "params":
     [
         {
@@ -145,6 +155,7 @@ R"({"cmd_arr":[
 },
 {
     "name": "SERVO_TEMP_READ",
+    "type": "mon",
     "params":
     [
         {
@@ -157,6 +168,7 @@ R"({"cmd_arr":[
 },
 {
     "name": "SERVO_VIN_READ",
+    "type": "mon",
     "params":
     [
         {
@@ -169,6 +181,7 @@ R"({"cmd_arr":[
 },
 {
     "name": "SERVO_POS_READ",
+    "type": "mon",
     "params":
     [
         {
@@ -181,6 +194,7 @@ R"({"cmd_arr":[
 },
 {
     "name": "SERVO_OR_MOTOR_MODE",
+    "type": "move",
     "params":
     [
         {
@@ -204,6 +218,7 @@ R"({"cmd_arr":[
 },
 {
     "name": "SERVO_LOAD_OR_UNLOAD",
+    "type": "move",
     "params":
     [
         {
@@ -222,6 +237,7 @@ R"({"cmd_arr":[
 },
 {
     "name": "SERVO_LED_CTL",
+    "type": "led",
     "params":
     [
         {
@@ -240,6 +256,7 @@ R"({"cmd_arr":[
 },
 {
     "name": "SERVO_LED_ERROR",
+    "type": "led",
     "params":
     [
         {
@@ -276,7 +293,25 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         servo_cmd* tmp_obj = new servo_cmd(nullptr, json_val.toObject());
         commands << tmp_obj;
-        ui->lay_cmd_list_layout->addWidget(tmp_obj);
+        QString cmd_type = json_val.toObject()["type"].toString();
+
+        int tab_num = 0;
+        for (tab_num = 0; tab_num < ui->tabWidget->count(); tab_num++)
+        {
+            if (ui->tabWidget->tabText(tab_num) == cmd_type)
+            {
+                ui->tabWidget->widget(tab_num)->layout()->addWidget(tmp_obj);
+                break;
+            }
+        }
+        if (tab_num >= ui->tabWidget->count())
+        {
+            tab_num = ui->tabWidget->count();
+            ui->tabWidget->addTab(new QWidget(), cmd_type);
+            ui->tabWidget->widget(tab_num)->setLayout(new QVBoxLayout());
+            ui->tabWidget->widget(tab_num)->layout()->addWidget(tmp_obj);
+        }
+
     }
 
     serial = new serialPort(this);

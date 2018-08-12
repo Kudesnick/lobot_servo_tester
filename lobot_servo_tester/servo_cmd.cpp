@@ -2,6 +2,8 @@
 #include <QJsonArray>
 #include <QSpinBox>
 #include <QLabel>
+#include <QRadioButton>
+#include <QCheckBox>
 
 #include "servo_cmd.h"
 #include "ui_servo_cmd.h"
@@ -60,6 +62,14 @@ servo_cmd::servo_cmd(QWidget *parent, const QJsonObject &cmd):
     if (VectorSpin.count() == 1)
     {
         ui->lonely_spin_layout->addWidget(VectorSpin.at(0));
+    }
+    foreach(QRadioButton * element, VectorRadio)
+    {
+        ui->lay_radio_layout->addWidget(element);
+    }
+    foreach(QCheckBox * element, VectorFlag)
+    {
+        ui->lay_flags_layout->addWidget(element);
     }
     ui->lay_params->setVisible(VectorSpin.count() > 1);
     ui->lay_radio->setVisible(VectorRadio.count() > 1);

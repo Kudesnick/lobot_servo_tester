@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>180</width>
-    <height>204</height>
+    <height>76</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -85,7 +85,7 @@
       </property>
       <item>
        <widget class="QWidget" name="lay_radio" native="true">
-        <layout class="QHBoxLayout" name="lay_radio_layout" stretch="0,0">
+        <layout class="QHBoxLayout" name="lay_radio_layout" stretch="">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -104,32 +104,6 @@
          <property name="bottomMargin">
           <number>0</number>
          </property>
-         <item>
-          <widget class="QRadioButton" name="rb_default">
-           <property name="text">
-            <string>servo</string>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-           <property name="checked">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="rb_alternate">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>rotate</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </widget>
       </item>
@@ -151,39 +125,6 @@
          <property name="bottomMargin">
           <number>0</number>
          </property>
-         <item>
-          <widget class="QCheckBox" name="ch_1">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>CheckBox</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="ch_2">
-           <property name="text">
-            <string>CheckBox</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="ch_3">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>CheckBox</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </widget>
       </item>
