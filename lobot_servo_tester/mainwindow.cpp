@@ -2,6 +2,7 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QDebug>
+#include <QSpacerItem>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -311,7 +312,11 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->tabWidget->widget(tab_num)->setLayout(new QVBoxLayout());
             ui->tabWidget->widget(tab_num)->layout()->addWidget(tmp_obj);
         }
-
+    }
+    for (int tab_num = 0; tab_num < ui->tabWidget->count(); tab_num++)
+    {
+        QSpacerItem * tmp_spacer = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding);
+        ui->tabWidget->widget(tab_num)->layout()->addItem(tmp_spacer);
     }
 
     serial = new serialPort(this);
