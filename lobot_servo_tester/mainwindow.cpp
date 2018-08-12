@@ -14,8 +14,8 @@ static QVector<servo_cmd* > commands;
 
 #define countof(e) (sizeof(e)/sizeof((e)[0]))
 
-static const char* source_str = R"(
-{"cmd_arr":[
+static const char* source_str =
+R"({"cmd_arr":[
 
 {
     "name": "SERVO_MOVE_TIME",
@@ -53,8 +53,16 @@ static const char* source_str = R"(
     "write": 7,
     "read" : 8
 },
-
-
+{
+    "name": "SERVO_MOVE_START",
+    "params": [],
+    "write": 11
+},
+{
+    "name": "SERVO_MOVE_STOP",
+    "params": [],
+    "write": 12
+},
 {
     "name": "SERVO_ID",
     "params":
@@ -67,6 +75,191 @@ static const char* source_str = R"(
     ],
     "write": 13,
     "read" : 14
+},
+{
+    "name": "SERVO_ANGLE_OFFSET_ADJUST",
+    "params":
+    [
+        {
+            "name": "deviation",
+            "type": "int",
+            "range": [-125, 125]
+        }
+    ],
+    "write": 17,
+    "read" : 19
+},
+{
+    "name": "SERVO_ANGLE_OFFSET_WRITE",
+    "params": [],
+    "write": 18
+},
+{
+    "name": "SERVO_ANGLE_LIMIT",
+    "params":
+    [
+        {
+            "name": "minimum angle",
+            "type": "int",
+            "range": [0, 24000]
+        },
+        {
+            "name": "maximum angle",
+            "type": "int",
+            "range": [0, 24000]
+        }
+    ],
+    "write": 20,
+    "read" : 21
+},
+{
+    "name": "SERVO_VIN_LIMIT",
+    "params":
+    [
+        {
+            "name": "minimum voltaje",
+            "type": "int",
+            "range": [4500, 12000]
+        },
+        {
+            "name": "maximum voltaje",
+            "type": "int",
+            "range": [4500, 12000]
+        }
+    ],
+    "write": 22,
+    "read" : 23
+},
+{
+    "name": "SERVO_TEMP_MAX_LIMIT",
+    "params":
+    [
+        {
+            "name": "temperature",
+            "type": "int",
+            "range": [50, 100]
+        }
+    ],
+    "write": 24,
+    "read" : 25
+},
+{
+    "name": "SERVO_TEMP_READ",
+    "params":
+    [
+        {
+            "name": "temperature",
+            "type": "int",
+            "range": [0, 255]
+        }
+    ],
+    "read" : 26
+},
+{
+    "name": "SERVO_VIN_READ",
+    "params":
+    [
+        {
+            "name": "voltage",
+            "type": "int",
+            "range": [0, 32768]
+        }
+    ],
+    "read" : 27
+},
+{
+    "name": "SERVO_POS_READ",
+    "params":
+    [
+        {
+            "name": "voltage",
+            "type": "int",
+            "range": [-32767, 32768]
+        }
+    ],
+    "read" : 28
+},
+{
+    "name": "SERVO_OR_MOTOR_MODE",
+    "params":
+    [
+        {
+            "name": "servo",
+            "type": "radio",
+            "range": []
+        },
+        {
+            "name": "motor",
+            "type": "radio",
+            "range": []
+        },
+        {
+            "name": "speed",
+            "type": "int",
+            "range": [-1000, 1000]
+        }
+    ],
+    "write": 29,
+    "read" : 30
+},
+{
+    "name": "SERVO_LOAD_OR_UNLOAD",
+    "params":
+    [
+        {
+            "name": "load",
+            "type": "radio",
+            "range": []
+        },
+        {
+            "name": "unload",
+            "type": "radio",
+            "range": []
+        }
+    ],
+    "write": 31,
+    "read" : 32
+},
+{
+    "name": "SERVO_LED_CTL",
+    "params":
+    [
+        {
+            "name": "on",
+            "type": "radio",
+            "range": []
+        },
+        {
+            "name": "off",
+            "type": "radio",
+            "range": []
+        }
+    ],
+    "write": 33,
+    "read" : 34
+},
+{
+    "name": "SERVO_LED_ERROR",
+    "params":
+    [
+        {
+            "name": "Over temperature",
+            "type": "flag",
+            "range": []
+        },
+        {
+            "name": "Over voltage",
+            "type": "flag",
+            "range": []
+        },
+        {
+            "name": "Locked-rotor",
+            "type": "flag",
+            "range": []
+        }
+    ],
+    "write": 35,
+    "read" : 36
 }
 
 ]})";
