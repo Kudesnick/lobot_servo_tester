@@ -9,16 +9,55 @@
 #include "serialport.h"
 
 static serialPort * serial;
-static servo_cmd * commands[2];
+static QVector<servo_cmd* > commands;
 
 #define countof(e) (sizeof(e)/sizeof((e)[0]))
 
 static const char* source_str = R"(
 {
+    "SERVO_MOVE_TIME":
+    {
+        "name": "SERVO_MOVE_TIME",
+        "params":
+        [
+            {
+                "name": "angle",
+                "type": "int",
+                "range": [0, 24000]
+            },
+            {
+                "name": "time",
+                "type": "int",
+                "range": [0, 30000]
+            }
+        ],
+        "write": 1,
+        "read" : 2
+    },
+    "SERVO_MOVE_TIME_WAIT":
+    {
+        "name": "SERVO_MOVE_TIME_WAIT",
+        "params":
+        [
+            {
+                "name": "angle",
+                "type": "int",
+                "range": [0, 24000]
+            },
+            {
+                "name": "time",
+                "type": "int",
+                "range": [0, 30000]
+            }
+        ],
+        "write": 7,
+        "read" : 8
+    },
+
+
     "SERVO_ID":
     {
         "name": "SERVO_ID",
-
         "params":
         [
             {
@@ -27,16 +66,8 @@ static const char* source_str = R"(
                 "range": [0, 253]
             }
         ],
-
-        "write":
-        {
-            "code": "0x13"
-        },
-
-        "read":
-        {
-            "code": "0x14"
-        }
+        "write": 13,
+        "read" : 14
     }
 }
 )";
@@ -51,8 +82,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     for (uint8_t i = 0; i < cmd_json.count(); i++)
     {
-        commands[i] = new servo_cmd(nullptr, cmd_json.value(cmd_json.keys()[i]).toObject());
-        ui->lay_cmd_list_layout->addWidget(commands[i]);
+        servo_cmd* tmp_obj = new servo_cmd(nullptr, cmd_json[cmd_json.keys()[i]].toObject());
+        commands << tmp_obj;
+        ui->lay_cmd_list_layout->addWidget(tmp_obj);
     }
 
     serial = new serialPort(this);

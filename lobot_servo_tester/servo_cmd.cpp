@@ -1,6 +1,7 @@
 #include <QDebug>
 #include <QJsonArray>
 #include <QSpinBox>
+#include <QLabel>
 
 #include "servo_cmd.h"
 #include "ui_servo_cmd.h"
@@ -18,16 +19,12 @@ servo_cmd::servo_cmd(QWidget *parent, const QJsonObject &cmd):
     json_cmd = cmd;
 
     // Title
-    ui->set_group->setTitle(json_cmd.find("name").value().toString());
+    ui->set_group->setTitle(json_cmd["name"].toString());
     // Buttons
-    ui->btn_set->setVisible(json_cmd.find("write").value().isObject());
-    ui->btn_get->setVisible(json_cmd.find("read").value().isObject());
+    ui->btn_set->setVisible(json_cmd["write"].isDouble());
+    ui->btn_get->setVisible(json_cmd["read"].isDouble());
     // Params
-    ui->lay_radio->setHidden(true);
-    ui->lay_flags->setHidden(true);
-//    ui->lay_params->setHidden(true);
-
-    QJsonArray params = json_cmd.find("params").value().toArray();
+    QJsonArray params = json_cmd["params"].toArray();
     QVector<QSpinBox* >     VectorSpin;
     QVector<QLabel* >       VectorLabel;
     QVector<QRadioButton* > VectorRadio;
@@ -37,22 +34,22 @@ servo_cmd::servo_cmd(QWidget *parent, const QJsonObject &cmd):
     {
         QJsonObject param = params[i].toObject();
 
-        if (param.find("type").value().toString() == "int")
+        if (param["type"].toString() == "int")
         {
             QSpinBox* tmpSpinBox = new QSpinBox();
-            VectorLabel << new QLabel(param.find("name").value().toString());
+            VectorLabel << new QLabel(param["name"].toString());
             VectorSpin << tmpSpinBox;
-            tmpSpinBox->setMinimum(param.find("rande").value().toArray().at(0).toInt());
-            tmpSpinBox->setMaximum(param.find("rande").value().toArray().at(1).toInt());
+            tmpSpinBox->setMinimum(param["range"].toArray()[0].toInt());
+            tmpSpinBox->setMaximum(param["range"].toArray()[1].toInt());
             tmpSpinBox->setValue(tmpSpinBox->minimum());
         }
-        else if (param.find("type").value().toString() == "radio")
+        else if (param["type"].toString() == "radio")
         {
-            VectorRadio << new QRadioButton(param.find("name").value().toString());
+            VectorRadio << new QRadioButton(param["name"].toString());
         }
-        else if (param.find("type").value().toString() == "flag")
+        else if (param["type"].toString() == "flag")
         {
-            VectorFlag << new QCheckBox(param.find("name").value().toString());
+            VectorFlag << new QCheckBox(param["name"].toString());
         }
     }
 
@@ -64,6 +61,9 @@ servo_cmd::servo_cmd(QWidget *parent, const QJsonObject &cmd):
     {
         ui->lonely_spin_layout->addWidget(VectorSpin.at(0));
     }
+    ui->lay_params->setVisible(VectorSpin.count() > 1);
+    ui->lay_radio->setVisible(VectorRadio.count() > 1);
+    ui->lay_flags->setVisible(VectorFlag.count() > 0);
 }
 
 servo_cmd::~servo_cmd()
