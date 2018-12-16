@@ -22,7 +22,7 @@ public:
 
     bool open_port(const QString &name);
     void close_port(void);
-    void sync_data_send(QByteArray &data);
+    void sync_data_send(QVector<uint8_t> &data);
 
 public slots:
     void scan(void);

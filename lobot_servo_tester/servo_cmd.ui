@@ -171,14 +171,14 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QWidget" name="" native="true">
+          <widget class="QWidget" name="widget" native="true">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <layout class="QHBoxLayout" name="lonely_spin_layout" stretch="">
+           <layout class="QHBoxLayout" name="lonely_spin_layout">
             <property name="spacing">
              <number>0</number>
             </property>

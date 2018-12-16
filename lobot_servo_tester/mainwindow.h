@@ -20,8 +20,6 @@ private slots:
 
     void on_btn_close_uart_clicked();
 
-    void on_btn_SERVO_ID_READ_clicked();
-
     void on_uart_list_currentIndexChanged(int index);
 
 private:

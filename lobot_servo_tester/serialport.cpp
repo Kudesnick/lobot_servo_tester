@@ -62,13 +62,18 @@ void serialPort::close_port(void)
     emit connect(false);
 }
 
-void serialPort::sync_data_send(QByteArray &data)
+void serialPort::sync_data_send(QVector<uint8_t> &data)
 {
     int tx_len = data.size();
 
     serial.clear();
-    serial.write(data.data(), data.size());
+    serial.write(reinterpret_cast<const char *>(data.data()), data.size());
     serial.waitForReadyRead(3000);
-    data = serial.readAll().mid(tx_len, -1);
+    QByteArray tmp_bufQByte(serial.readAll().mid(tx_len, -1));
+    data.resize(tmp_bufQByte.size());
+    if (data.size() > 0)
+    {
+        memcpy(data.data(), tmp_bufQByte.data(), data.size());
+    }
     serial.clear();
 }
